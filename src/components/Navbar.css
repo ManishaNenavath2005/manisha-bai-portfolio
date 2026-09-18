@@ -1,0 +1,145 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  background-color: transparent;
+  border-bottom: 1px solid transparent;
+  transition:
+    background-color var(--transition-base),
+    border-color var(--transition-base);
+}
+
+.navbar-scrolled {
+  background-color: rgba(8, 8, 12, 0.8);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+}
+
+/* Logo */
+
+.navbar-logo {
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.navbar-logo-dot {
+  color: var(--color-accent);
+}
+
+/* Desktop Navigation */
+
+.navbar-links {
+  display: none;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.navbar-link {
+  position: relative;
+  padding: var(--space-1) 0;
+  font-size: var(--fs-sm);
+  color: var(--color-text-secondary);
+  transition: color var(--transition-fast);
+}
+
+.navbar-link::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--color-accent);
+  transition: width var(--transition-base);
+}
+
+.navbar-link:hover,
+.navbar-link-active {
+  color: var(--color-text-primary);
+}
+
+.navbar-link:hover::after,
+.navbar-link-active::after {
+  width: 100%;
+}
+
+/* Right Side */
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.navbar-resume-btn {
+  display: none;
+  padding: var(--space-2) var(--space-5);
+  font-size: var(--fs-xs);
+}
+
+/* Mobile Menu Button */
+
+.navbar-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-2);
+  color: var(--color-text-primary);
+}
+
+/* Mobile Navigation */
+
+.navbar-mobile {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  overflow: hidden;
+  padding: var(--space-5);
+  background-color: var(--color-bg-alt);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.navbar-mobile-link {
+  padding: var(--space-2) 0;
+  font-size: var(--fs-base);
+  color: var(--color-text-secondary);
+  transition: color var(--transition-fast);
+}
+
+.navbar-mobile-link:hover,
+.navbar-mobile-link.navbar-link-active {
+  color: var(--color-text-primary);
+}
+
+/* Desktop */
+
+@media (min-width: 900px) {
+  .navbar-links {
+    display: flex;
+  }
+
+  .navbar-resume-btn {
+    display: inline-flex;
+  }
+
+  .navbar-toggle {
+    display: none;
+  }
+}
+
+/* Extra-small phones: shrink the logo slightly so it never crowds the toggle button */
+@media (max-width: 340px) {
+  .navbar-logo {
+    font-size: var(--fs-base);
+  }
+}

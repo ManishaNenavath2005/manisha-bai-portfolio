@@ -1,0 +1,76 @@
+.training-card {
+  padding: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.training-top {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+}
+
+.training-icon {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-accent-soft);
+  color: var(--color-accent);
+}
+
+.training-title {
+  font-size: var(--fs-xl);
+  margin-top: var(--space-1);
+}
+
+.training-org {
+  color: var(--color-text-secondary);
+  font-size: var(--fs-sm);
+  margin-top: var(--space-1);
+}
+
+.training-note {
+  color: var(--color-text-secondary);
+  font-size: var(--fs-sm);
+  line-height: 1.7;
+  border-left: 2px solid var(--color-border-strong);
+  padding-left: var(--space-4);
+}
+
+.training-stat {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+}
+
+.training-stat-number {
+  font-size: var(--fs-3xl);
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+.training-stat-label {
+  color: var(--color-text-muted);
+  font-size: var(--fs-sm);
+}
+
+.training-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.training-tech-badge {
+  font-size: var(--fs-xs);
+  font-family: var(--font-mono);
+  padding: var(--space-1) var(--space-3);
+  background-color: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-secondary);
+}

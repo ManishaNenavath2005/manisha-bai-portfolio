@@ -1,0 +1,25 @@
+/* Fixed-height stage so the swapping text doesn't shift surrounding layout */
+.role-swapper {
+  position: relative;
+  height: 2.5rem;
+  margin-top: var(--space-1);
+}
+
+.role-swapper-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+}
+
+/* Users who prefer less motion see the first role only, no scroll-linked movement */
+@media (prefers-reduced-motion: reduce) {
+  .role-swapper-text {
+    position: static;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .role-swapper-text:not(:first-child) {
+    display: none;
+  }
+}

@@ -1,0 +1,93 @@
+.skills {
+  padding-top: var(--space-16);
+}
+
+/* Header block — centered, like the reference design */
+.skills-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: var(--space-10);
+  margin-bottom: var(--space-10);
+}
+
+.skills-subtitle {
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Wrapper for the two full-width marquee rows */
+.skills-marquees {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+/* Each row spans the FULL screen width — no container/max-width applied here,
+   since .skills-marquees sits directly inside <section>, not inside .container */
+.marquee-row {
+  width: 100%;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  gap: var(--space-3);
+  animation: scroll-left 40s linear infinite;
+}
+
+.marquee-left {
+  animation-name: scroll-left;
+}
+
+.marquee-right {
+  animation-name: scroll-right;
+}
+
+@keyframes scroll-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes scroll-right {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
+.skill-pill {
+  flex-shrink: 0;
+  padding: var(--space-3) var(--space-6);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-base);
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.skill-pill:hover {
+  border-color: var(--color-accent);
+  color: var(--color-text-primary);
+}
+
+@media (max-width: 600px) {
+  .skill-pill {
+    padding: var(--space-2) var(--space-5);
+    font-size: var(--fs-sm);
+  }
+
+  .marquee-track {
+    animation-duration: 26s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
