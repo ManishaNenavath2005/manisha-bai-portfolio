@@ -19,7 +19,7 @@ export const skillCategories = [
     id: "backend",
     title: "Backend Development",
     icon: "Server",
-    skills: ["Node.js", "Express.js", "REST APIs", "JWT Authentication"],
+    skills: ["Node.js", "Express.js", "REST APIs", "JWT Authentication", "MySQL", "MongoDB"],
   },
   {
     id: "databases",
@@ -43,6 +43,6 @@ export const skillCategories = [
     id: "ai",
     title: "AI / GenAI",
     icon: "Sparkles",
-    skills: ["Generative AI", "Scikit-learn", "Pandas", "XGBoost"],
+    skills: ["Generative AI", "LLMs"],
   },
 ];

@@ -1,0 +1,36 @@
+.animated-text {
+  display: inline-block;
+}
+
+.animated-letter {
+  display: inline-block;
+  transform-style: preserve-3d;
+
+  /* The slow-moving multicolor gradient, clipped to the letter shapes */
+  background: linear-gradient(90deg, #5b8def, #8b5bef, #ef5ba0, #5b8def);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient-sweep 6s ease-in-out infinite;
+  animation-delay: calc(var(--letter-index) * 0.05s);
+}
+
+@keyframes gradient-sweep {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Plain, static fallback used when the user prefers reduced motion */
+.animated-text-static {
+  color: var(--color-text-primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animated-letter {
+    animation: none;
+    background: none;
+    color: var(--color-text-primary);
+  }
+}

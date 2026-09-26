@@ -8,23 +8,18 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const { firstName, lastName, email, message, consent } = req.body;
+  const { name, email, message } = req.body;
 
   // Basic server-side validation — never trust data from the browser alone
-  if (!firstName || !lastName || !email || !message) {
+  if (!name || !email || !message) {
     return res.status(400).json({ error: "All fields are required." });
-  }
-
-  if (!consent) {
-    return res.status(400).json({ error: "Consent is required to send this message." });
   }
 
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailPattern.test(email)) {
     return res.status(400).json({ error: "Please provide a valid email address." });
   }
-  console.log("EMAIL USER:", process.env.CONTACT_EMAIL_USER);
-console.log("EMAIL PASS EXISTS:", !!process.env.CONTACT_EMAIL_PASS);
+
   try {
     // Reads credentials from environment variables — never hardcode these.
     const transporter = nodemailer.createTransport({
@@ -39,8 +34,8 @@ console.log("EMAIL PASS EXISTS:", !!process.env.CONTACT_EMAIL_PASS);
       from: `"Portfolio Contact Form" <${process.env.CONTACT_EMAIL_USER}>`,
       to: process.env.CONTACT_EMAIL_USER, // sends to yourself
       replyTo: email, // lets you hit "reply" and respond directly to the visitor
-      subject: `New portfolio message from ${firstName} ${lastName}`,
-      text: `Name: ${firstName} ${lastName}\nEmail: ${email}\n\nMessage:\n${message}`,
+      subject: `New portfolio message from ${name}`,
+      text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
     });
 
     return res.status(200).json({ success: true });

@@ -7,16 +7,23 @@ function Education() {
   return (
     <section id="education" className="section education">
       <div className="container education-header">
-        <span className="eyebrow">Academic Background</span>
-        <h2 className="section-title">Education</h2>
+        <motion.h2
+          className="education-neon-title"
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          Education
+        </motion.h2>
       </div>
 
       <div className="container education-list">
         {education.map((item, index) => (
           <motion.div
             key={item.degree}
-            className="education-card card"
-            initial={{ opacity: 0, y: 20 }}
+            className="education-card"
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -25,15 +32,30 @@ function Education() {
               <GraduationCap size={22} />
             </div>
 
-            <div className="education-details">
-              <h3>{item.degree}</h3>
-              {item.field && <p className="education-field">{item.field}</p>}
-              <p className="education-institution">{item.institution}</p>
-            </div>
+            <div className="education-body">
+              <div className="education-top-row">
+                <div>
+                  <h3 className="education-degree">{item.degree}</h3>
+                  {item.field && <p className="education-field">{item.field}</p>}
+                </div>
+                <span className="education-years">{item.years}</span>
+              </div>
 
-            <div className="education-meta">
-              <span className="education-years">{item.years}</span>
-              <span className="education-score">{item.score}</span>
+              <p className="education-institution">{item.institution}</p>
+              {item.location && (
+                <p className="education-location">{item.location}</p>
+              )}
+
+              <div className="education-footer-row">
+                <div className="education-tags">
+                  {item.tags?.map((tag) => (
+                    <span key={tag} className="education-tag">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <span className="education-score">{item.score}</span>
+              </div>
             </div>
           </motion.div>
         ))}

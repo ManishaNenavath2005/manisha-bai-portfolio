@@ -1,6 +1,11 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Mail, ArrowUpRight } from "lucide-react";
+import {
+  socialLinks,
+  contactInfo,
+  availabilityStatus,
+} from "../data/links";
 import "./Navbar.css";
 
 const navLinks = [
@@ -8,17 +13,13 @@ const navLinks = [
   { label: "About", href: "#about" },
   { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
-  { label: "Journey", href: "#journey" },
   { label: "Education", href: "#education" },
-  { label: "Contact", href: "#contact" },
 ];
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
-  const [scrolled, setScrolled] = useState(false);
 
-  // Detects which section is currently visible.
   useEffect(() => {
     const sections = document.querySelectorAll("section[id]");
 
@@ -42,78 +43,84 @@ function Navbar() {
     };
   }, []);
 
-  // Changes navbar appearance when scrolling.
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  // Closes the mobile menu.
   const closeMenu = () => {
     setIsOpen(false);
   };
 
+  const isActive = (href) => {
+    return activeSection === href.slice(1);
+  };
+
   return (
     <motion.header
-      className={`navbar ${scrolled ? "navbar-scrolled" : ""}`}
+      className="navbar"
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
+      transition={{
+        duration: 0.6,
+        ease: "easeOut",
+      }}
     >
       <div className="navbar-inner container">
-
-        {/* Logo */}
-        <a href="#home" className="navbar-logo">
-          MANISHA<span className="navbar-logo-dot">.</span>
+        {/* Mobile Logo */}
+        <a href="#home" className="navbar-logo-mobile">
+          MANISHA
+          <span className="navbar-logo-dot">.</span>
         </a>
 
         {/* Desktop Navigation */}
-        <nav className="navbar-links">
-          {navLinks.map((link) => (
+        <div className="navbar-desktop">
+          {/* Availability Status */}
+          <div className="navbar-pill navbar-status">
+            <span className="status-dot" />
+            {availabilityStatus}
+          </div>
+
+          {/* Navigation Links */}
+          <nav className="navbar-pill navbar-links-pill">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className={`navbar-link ${
+                  isActive(link.href) ? "navbar-link-active" : ""
+                }`}
+              >
+                {link.label}
+              </a>
+            ))}
+
+            {/* Contact */}
             <a
-              key={link.href}
-              href={link.href}
-              className={`navbar-link ${
-                activeSection === link.href.slice(1)
-                  ? "navbar-link-active"
-                  : ""
+              href="#contact"
+              className={`navbar-link navbar-link-contact ${
+                isActive("#contact") ? "navbar-link-active" : ""
               }`}
             >
-              {link.label}
+              Contact
+              <ArrowUpRight size={14} />
             </a>
-          ))}
-        </nav>
+          </nav>
 
-        {/* Right Side */}
-        <div className="navbar-actions">
-
-          {/* Resume */}
+          {/* Email */}
           <a
-            href="/resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-primary navbar-resume-btn"
+            href={`mailto:${contactInfo.email}`}
+            className="navbar-pill navbar-email-pill"
           >
-            Resume
+            <Mail size={14} />
+            {contactInfo.email}
           </a>
-
-          {/* Mobile Menu Button */}
-          <button
-            className="navbar-toggle"
-            onClick={() => setIsOpen((prev) => !prev)}
-            aria-label={isOpen ? "Close menu" : "Open menu"}
-            aria-expanded={isOpen}
-          >
-            {isOpen ? <X size={22} /> : <Menu size={22} />}
-          </button>
         </div>
+
+        {/* Mobile Menu Button */}
+        <button
+          className="navbar-toggle"
+          onClick={() => setIsOpen((prev) => !prev)}
+          aria-label={isOpen ? "Close menu" : "Open menu"}
+          aria-expanded={isOpen}
+        >
+          {isOpen ? <X size={22} /> : <Menu size={22} />}
+        </button>
       </div>
 
       {/* Mobile Navigation */}
@@ -121,25 +128,53 @@ function Navbar() {
         {isOpen && (
           <motion.nav
             className="navbar-mobile"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
+            initial={{
+              height: 0,
+              opacity: 0,
+            }}
+            animate={{
+              height: "auto",
+              opacity: 1,
+            }}
+            exit={{
+              height: 0,
+              opacity: 0,
+            }}
+            transition={{
+              duration: 0.3,
+              ease: "easeInOut",
+            }}
           >
+            {/* Mobile Availability */}
+            <div className="navbar-mobile-status">
+              <span className="status-dot" />
+              {availabilityStatus}
+            </div>
+
+            {/* Mobile Links */}
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={closeMenu}
                 className={`navbar-mobile-link ${
-                  activeSection === link.href.slice(1)
-                    ? "navbar-link-active"
-                    : ""
+                  isActive(link.href) ? "navbar-link-active" : ""
                 }`}
               >
                 {link.label}
               </a>
             ))}
+
+            {/* Mobile Contact */}
+            <a
+              href="#contact"
+              onClick={closeMenu}
+              className={`navbar-mobile-link ${
+                isActive("#contact") ? "navbar-link-active" : ""
+              }`}
+            >
+              Contact
+            </a>
 
             {/* Mobile Resume */}
             <a
@@ -151,6 +186,27 @@ function Navbar() {
             >
               Resume
             </a>
+
+            {/* Mobile Social Links */}
+            <div className="navbar-mobile-socials">
+              <a
+                href={socialLinks.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+              >
+                GitHub
+              </a>
+
+              <a
+                href={socialLinks.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+              >
+                LinkedIn
+              </a>
+            </div>
           </motion.nav>
         )}
       </AnimatePresence>

@@ -1,22 +1,20 @@
 import { motion } from "motion/react";
+import { Code2, LayoutTemplate, Server, Database, Brain, Wrench, Sparkles } from "lucide-react";
 import { skillCategories } from "../data/skills";
 import "./Skills.css";
 
-// Flatten every category's skills into one list, then split it into two
-// halves — one for each marquee row (top row scrolls left, bottom row scrolls right).
-const allSkills = skillCategories.flatMap((category) => category.skills);
-const midpoint = Math.ceil(allSkills.length / 2);
-const rowOne = allSkills.slice(0, midpoint);
-const rowTwo = allSkills.slice(midpoint);
+const iconMap = { Code2, LayoutTemplate, Server, Database, Brain, Wrench, Sparkles };
 
-function MarqueeRow({ skills, direction }) {
+const allSkills = skillCategories.flatMap((category) => category.skills);
+
+function SkillRibbon() {
   return (
-    <div className="marquee-row">
-      <div className={`marquee-track marquee-${direction}`}>
-        {/* Duplicated so the loop has no visible seam */}
-        {[...skills, ...skills].map((skill, i) => (
-          <span key={`${skill}-${i}`} className="skill-pill">
-            {skill}
+    <div className="skills-ribbon">
+      <div className="skills-ribbon-track">
+        {[...allSkills, ...allSkills].map((skill, i) => (
+          <span key={`${skill}-${i}`} className="ribbon-item">
+            <span className="ribbon-text">{skill}</span>
+            <span className="ribbon-dot" aria-hidden="true">+</span>
           </span>
         ))}
       </div>
@@ -27,21 +25,10 @@ function MarqueeRow({ skills, direction }) {
 function Skills() {
   return (
     <section id="skills" className="section skills">
-      <div className="divider-line" />
-
       <div className="container skills-header">
-        <motion.span
-          className="eyebrow"
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          What I Work With
-        </motion.span>
 
         <motion.h2
-          className="section-title"
+          className="section-title skills-gradient-title"
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -62,15 +49,42 @@ function Skills() {
       </div>
 
       <motion.div
-        className="skills-marquees"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.6, delay: 0.2 }}
       >
-        <MarqueeRow skills={rowOne} direction="left" />
-        <MarqueeRow skills={rowTwo} direction="right" />
+        <SkillRibbon />
       </motion.div>
+
+      <div className="container skills-grid">
+        {skillCategories.map((category, index) => {
+          const Icon = iconMap[category.icon];
+          return (
+            <motion.div
+              key={category.id}
+              className="skill-card"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.5, delay: index * 0.06 }}
+            >
+              <div className="skill-card-header">
+                <Icon size={16} />
+                <span>{category.title}</span>
+              </div>
+
+              <div className="skill-card-pills">
+                {category.skills.map((skill) => (
+                  <span key={skill} className="skill-pill">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+          );
+        })}
+      </div>
     </section>
   );
 }

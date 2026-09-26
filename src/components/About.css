@@ -1,79 +1,103 @@
-.about-inner {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-10);
-  align-items: center;
-}
-
-.about-visual {
+.about-container {
   display: flex;
   justify-content: center;
 }
 
+/* Same neon-glass treatment as the Projects cards — cyan border,
+   diagonal dark-teal gradient background, glow on hover */
 .about-card {
   width: 100%;
-  max-width: 320px;
-  padding: var(--space-8) var(--space-6);
+  max-width: 600px;
+  padding: var(--space-10) var(--space-8);
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: var(--space-4);
+  gap: var(--space-5);
+
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(34, 211, 238, 0.35);
+  background: linear-gradient(135deg, rgba(20, 60, 60, 0.35), rgba(8, 8, 12, 0.9));
+  transition: border-color var(--transition-base), box-shadow var(--transition-base),
+    transform var(--transition-base);
 }
 
-.about-card-status {
+.about-card:hover {
+  border-color: rgba(34, 211, 238, 0.8);
+  box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.3), 0 0 40px rgba(34, 211, 238, 0.25);
+  transform: translateY(-4px);
+}
+
+.about-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
-  gap: var(--space-2);
+  justify-content: center;
+  background-color: var(--color-bg-alt);
+  border: 2px solid var(--color-accent-cyan);
+  box-shadow: 0 0 0 6px rgba(34, 211, 238, 0.1), 0 0 40px rgba(34, 211, 238, 0.25);
   font-family: var(--font-mono);
-  font-size: var(--fs-xs);
-  color: var(--color-success);
-  border: 1px solid var(--color-border);
-  padding: var(--space-1) var(--space-3);
-  border-radius: var(--radius-pill);
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  color: var(--color-text-primary);
 }
 
-.status-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: var(--color-success);
-}
-
-.about-card-icon {
-  font-family: var(--font-mono);
-  font-size: var(--fs-4xl);
-  color: var(--color-accent);
-}
-
-.about-card-caption {
-  font-size: var(--fs-sm);
-  color: var(--color-text-secondary);
+/* Neon glow heading, same technique as "LIVE PROJECTS" */
+.about-heading {
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--color-accent-cyan);
+  text-shadow: 0 0 8px rgba(34, 211, 238, 0.8), 0 0 24px rgba(34, 211, 238, 0.5),
+    0 0 48px rgba(34, 211, 238, 0.3);
 }
 
 .about-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.about-text p {
   color: var(--color-text-secondary);
+  font-size: 12px;
   line-height: 1.8;
 }
 
-.about-tags {
+.hl {
+  font-weight: 600;
+}
+
+.hl-pink {
+  color: var(--color-accent-pink);
+}
+
+.hl-green {
+  color: var(--color-success);
+}
+
+.hl-cyan {
+  color: var(--color-accent-cyan);
+}
+
+.about-badge {
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-3);
-  margin-top: var(--space-6);
-}
-
-.about-tag {
-  font-size: var(--fs-xs);
-  font-family: var(--font-mono);
-  padding: var(--space-2) var(--space-4);
-  border: 1px solid var(--color-border-strong);
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-5);
+  border: 1px solid var(--color-accent-cyan);
   border-radius: var(--radius-pill);
-  color: var(--color-text-secondary);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--color-text-primary);
+  background-color: rgba(34, 211, 238, 0.06);
+  margin-top: var(--space-2);
+  text-align: center;
 }
 
-@media (min-width: 900px) {
-  .about-inner {
-    grid-template-columns: 0.8fr 1.2fr;
+@media (max-width: 600px) {
+  .about-card {
+    padding: var(--space-8) var(--space-5);
   }
 }

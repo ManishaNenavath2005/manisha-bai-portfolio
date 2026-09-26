@@ -3,7 +3,16 @@ import { Rocket } from "lucide-react";
 import "./Training.css";
 
 const trainingTech = [
-  "HTML", "CSS", "JavaScript", "React.js", "Node.js", "Express.js", "SQL", "MongoDB", "Python",
+  "HTML",
+  "CSS",
+  "JavaScript",
+  "React.js",
+  "Node.js",
+  "Express.js",
+  "SQL",
+  "MongoDB",
+  "Python",
+  "Generative AI",
 ];
 
 function Training() {
@@ -11,7 +20,7 @@ function Training() {
     <section id="training" className="section training">
       <div className="container">
         <motion.div
-          className="training-card card"
+          className="training-card"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
@@ -21,23 +30,33 @@ function Training() {
             <div className="training-icon">
               <Rocket size={22} />
             </div>
-            <div>
-              <span className="eyebrow">Currently Training</span>
-              <h2 className="training-title">Full-Stack Development Trainee</h2>
-              <p className="training-org">NxtWave CCBP 4.0 Academy · 2024 – Present</p>
+
+            <div className="training-heading">
+              <span className="eyebrow">Professional Training</span>
+
+              <h2 className="training-title">
+                Full-Stack Development Trainee
+              </h2>
+
+              <p className="training-org">
+                NxtWave CCBP 4.0 Academy · 2024 – Present
+              </p>
             </div>
           </div>
 
           <p className="training-note">
-            This is structured, ongoing training — not professional employment —
-            focused on building production-ready, industry-aligned full-stack
-            web applications using real-world tools and practices.
+            Completed structured, hands-on training in Full-Stack Development,
+            covering frontend, backend, databases, authentication, REST APIs,
+            and responsive web application development. Built multiple
+            real-world style applications using React.js, JavaScript, Node.js,
+            Express.js, SQL, and MongoDB while strengthening problem-solving
+            skills through Data Structures and Algorithms practice.
           </p>
 
-          <div className="training-stat">
-            <span className="training-stat-number">300+</span>
-            <span className="training-stat-label">DSA problems solved</span>
-          </div>
+          <p className="training-note">
+            Also explored Python and Generative AI concepts and applied them
+            to practical project development.
+          </p>
 
           <div className="training-tech">
             {trainingTech.map((tech) => (

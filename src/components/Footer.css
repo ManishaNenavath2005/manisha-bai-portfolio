@@ -1,51 +1,67 @@
 .footer {
-  padding-top: var(--space-10);
+  padding-top: var(--space-6); /* reduced from space-10 */
+  padding-bottom: var(--space-8);
 }
 
-.footer-inner {
-  padding-top: var(--space-10);
-  padding-bottom: var(--space-8);
+/* Same neon-glass card language as every other section, with the same
+   always-visible ambient glow used in Contact */
+.footer-card {
+  max-width: 650px;
+  margin: 0 auto;
+  padding: var(--space-5) var(--space-6);
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: var(--space-6);
+  gap: var(--space-2);
+
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(34, 211, 238, 0.4);
+  background: linear-gradient(135deg, rgba(20, 60, 60, 0.3), rgba(8, 8, 12, 0.9));
+  box-shadow: 0 0 40px rgba(34, 211, 238, 0.12);
+  transition: border-color var(--transition-base), box-shadow var(--transition-base);
 }
 
-.footer-wordmark {
-  font-size: clamp(3rem, 12vw, 7rem);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  color: var(--color-text-primary);
-  opacity: 0.08;
+.footer-card:hover {
+  border-color: rgba(34, 211, 238, 0.7);
+  box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.25), 0 0 40px rgba(34, 211, 238, 0.25);
 }
 
-.footer-bottom {
+.footer-line-1 {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
-  gap: var(--space-4);
-  width: 100%;
+  justify-content: center;
+  gap: var(--space-3);
+  font-size: var(--fs-para);
+  color: var(--color-accent-cyan, #22d3ee);
+  text-shadow: 0 0 8px rgba(34, 211, 238, 0.4);
 }
 
-.footer-copy {
+.footer-pipe {
+  color: var(--color-accent-pink, #ef5ba0);
+  opacity: 0.7;
+}
+
+.footer-tagline {
+  color: var(--color-accent-pink, #ef5ba0);
+  text-shadow: 0 0 8px rgba(239, 91, 160, 0.4);
+}
+
+.footer-line-2 {
+  font-family: var(--font-mono);
   font-size: var(--fs-xs);
   color: var(--color-text-muted);
+  letter-spacing: 0.02em;
 }
 
-.footer-socials {
-  display: flex;
-  gap: var(--space-5);
-  color: var(--color-text-secondary);
-}
+@media (max-width: 500px) {
+  .footer-line-1 {
+    flex-direction: column;
+    gap: var(--space-1);
+  }
 
-.footer-socials a:hover {
-  color: var(--color-accent);
-}
-
-@media (min-width: 700px) {
-  .footer-bottom {
-    flex-direction: row;
-    justify-content: space-between;
+  .footer-pipe {
+    display: none;
   }
 }

@@ -2,14 +2,12 @@
   padding-top: var(--space-16);
 }
 
-/* Header block — centered, like the reference design */
 .skills-header {
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: var(--space-10);
-  margin-bottom: var(--space-10);
+  margin-bottom: var(--space-8);
 }
 
 .skills-subtitle {
@@ -17,77 +15,251 @@
   text-align: center;
 }
 
-/* Wrapper for the two full-width marquee rows */
-.skills-marquees {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-5);
+/* ==========================================================================
+   SKILLS & TECHNOLOGIES HEADING
+   Same single-color neon style as About Me
+   ========================================================================== */
+
+.skills-gradient-title {
+  font-size: 30px;
+  font-weight: 700;
+
+  color: var(--color-accent-cyan);
+
+  text-shadow:
+    0 0 8px rgba(34, 211, 238, 0.8),
+    0 0 24px rgba(34, 211, 238, 0.5),
+    0 0 48px rgba(34, 211, 238, 0.3);
 }
 
-/* Each row spans the FULL screen width — no container/max-width applied here,
-   since .skills-marquees sits directly inside <section>, not inside .container */
-.marquee-row {
+/* ==========================================================================
+   SINGLE SCROLLING RIBBON
+   ========================================================================== */
+
+.skills-ribbon {
   width: 100%;
   overflow: hidden;
-  -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
-  mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+
+  padding: 10px 0;
+
+  background-color: var(--color-surface);
+
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 6%,
+    black 94%,
+    transparent
+  );
+
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 6%,
+    black 94%,
+    transparent
+  );
 }
 
-.marquee-track {
+.skills-ribbon-track {
   display: flex;
+  align-items: center;
+
   width: max-content;
+
+  gap: var(--space-5);
+
+  animation: ribbon-scroll 45s linear infinite;
+}
+
+@keyframes ribbon-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.ribbon-item {
+  display: flex;
+  align-items: center;
+
+  gap: var(--space-5);
+
+  flex-shrink: 0;
+}
+
+.ribbon-text {
+  font-family: var(--font-mono);
+
+  font-size: 9px;
+  font-weight: 600;
+
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  color: var(--color-text-secondary);
+
+  white-space: nowrap;
+}
+
+.ribbon-dot {
+  color: var(--color-accent);
+
+  font-weight: 700;
+  font-size: 12px;
+}
+
+/* ==========================================================================
+   CATEGORY CARDS
+   ========================================================================== */
+
+.skills-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, minmax(0, 260px));
+
+  justify-content: center;
+
+  gap: var(--space-4);
+
+  margin-top: var(--space-10);
+}
+
+.skill-card {
+  width: 100%;
+
+  padding: var(--space-5);
+
+  display: flex;
+  flex-direction: column;
+
   gap: var(--space-3);
-  animation: scroll-left 40s linear infinite;
+
+  border-radius: var(--radius-md);
+
+  border: 1px solid rgba(34, 211, 238, 0.35);
+
+  background: linear-gradient(
+    135deg,
+    rgba(20, 60, 60, 0.35),
+    rgba(8, 8, 12, 0.9)
+  );
+
+  transition:
+    border-color var(--transition-base),
+    box-shadow var(--transition-base),
+    transform var(--transition-base);
 }
 
-.marquee-left {
-  animation-name: scroll-left;
+.skill-card:hover {
+  border-color: rgba(34, 211, 238, 0.8);
+
+  box-shadow:
+    0 0 0 1px rgba(34, 211, 238, 0.3),
+    0 0 30px rgba(34, 211, 238, 0.25);
+
+  transform:
+    perspective(800px)
+    rotateX(4deg)
+    rotateY(-4deg)
+    translateY(-6px);
 }
 
-.marquee-right {
-  animation-name: scroll-right;
+.skill-card-header {
+  display: flex;
+  align-items: center;
+
+  gap: var(--space-2);
+
+  color: var(--color-accent-cyan);
+
+  font-family: var(--font-mono);
+
+  font-size: 10px;
+  font-weight: 700;
+
+  letter-spacing: 0.1em;
+
+  text-transform: uppercase;
+
+  text-shadow:
+    0 0 10px rgba(34, 211, 238, 0.4);
 }
 
-@keyframes scroll-left {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
+.skill-card-pills {
+  display: flex;
 
-@keyframes scroll-right {
-  from { transform: translateX(-50%); }
-  to { transform: translateX(0); }
+  flex-wrap: wrap;
+
+  gap: var(--space-2);
 }
 
 .skill-pill {
-  flex-shrink: 0;
-  padding: var(--space-3) var(--space-6);
-  background-color: var(--color-surface);
+  padding: var(--space-2) var(--space-4);
+
+  background-color: rgba(8, 8, 12, 0.6);
+
   border: 1px solid var(--color-border);
+
   border-radius: var(--radius-pill);
-  font-size: var(--fs-base);
+
+  font-size: 10px;
+
   color: var(--color-text-secondary);
+
   white-space: nowrap;
-  transition: border-color var(--transition-fast), color var(--transition-fast);
+
+  transition:
+    border-color var(--transition-fast),
+    color var(--transition-fast);
 }
 
 .skill-pill:hover {
-  border-color: var(--color-accent);
+  border-color: var(--color-accent-cyan);
+
   color: var(--color-text-primary);
 }
 
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  .skills-grid {
+    grid-template-columns: repeat(2, minmax(0, 260px));
+  }
+}
+
 @media (max-width: 600px) {
-  .skill-pill {
-    padding: var(--space-2) var(--space-5);
-    font-size: var(--fs-sm);
+  .skills-grid {
+    grid-template-columns: minmax(0, 320px);
   }
 
-  .marquee-track {
-    animation-duration: 26s;
+  .ribbon-text {
+    font-size: 11px;
+  }
+
+  .skills-ribbon-track {
+    animation-duration: 30s;
+  }
+
+  .skill-card:hover {
+    transform: translateY(-4px);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .marquee-track {
+  .skills-ribbon-track {
     animation: none;
+  }
+
+  .skill-card:hover {
+    transform: none;
   }
 }

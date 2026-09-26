@@ -1,15 +1,14 @@
 import { useState } from "react";
 import { motion } from "motion/react";
-import { Mail, Phone, CheckCircle2, Send } from "lucide-react";
-import { socialLinks, contactInfo } from "../data/links";
+import { CheckCircle2, Send } from "lucide-react";
+import { FaLinkedin, FaGithub } from "react-icons/fa";
+import { socialLinks } from "../data/links";
 import "./Contact.css";
 
 const initialForm = {
-  firstName: "",
-  lastName: "",
+  name: "",
   email: "",
   message: "",
-  consent: false,
 };
 
 function Contact() {
@@ -18,11 +17,11 @@ function Contact() {
   const [errorMsg, setErrorMsg] = useState("");
 
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
+    const { name, value } = e.target;
 
     setForm((prev) => ({
       ...prev,
-      [name]: type === "checkbox" ? checked : value,
+      [name]: value,
     }));
   };
 
@@ -44,7 +43,9 @@ function Contact() {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || "Something went wrong.");
+        throw new Error(
+          data.error || "Something went wrong. Please try again."
+        );
       }
 
       setStatus("success");
@@ -56,141 +57,84 @@ function Contact() {
   };
 
   return (
-    <section id="contact" className="section contact">
-      <div className="container contact-header">
-        <span className="eyebrow">Live Dispatch Mode</span>
-
-        <h2 className="section-title">
-          Let's Build Something Together
-        </h2>
-
-        <p className="section-subtitle contact-subtitle">
-          I'm open to Software Engineering opportunities, internships,
-          and interesting projects.
-        </p>
+    <section id="contact" className="section contact"> 
+       <div className="container contact-header">
+        <motion.h2
+          className="contact-neon-title"
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          Contact
+        </motion.h2>
       </div>
+      <div className="container contact-stack">
 
-      <div className="container contact-grid">
-
-        {/* Contact information and live preview */}
+        {/* Hire Me Card */}
         <motion.div
-          className="contact-preview card"
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          className="hire-card"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.5 }}
         >
-          <div className="contact-preview-header">
-            <span className="code-dot code-dot-red" />
-            <span className="code-dot code-dot-yellow" />
-            <span className="code-dot code-dot-green" />
+          <h2 className="hire-title">Hire Me</h2>
 
-            <span className="contact-preview-title">
-              payload_preview.json
-            </span>
-          </div>
+          <p className="hire-text">
+            I'm currently open to Software Engineering opportunities,
+            internships, and freelance projects. If you're looking for a
+            dedicated Full-Stack Developer who brings creativity and
+            consistency — let's connect!
+          </p>
 
-          <pre className="contact-preview-body">
-{`{
-  "firstName": "${form.firstName || "..."}",
-  "lastName": "${form.lastName || "..."}",
-  "email": "${form.email || "..."}",
-  "message": "${
-    form.message
-      ? form.message.slice(0, 40) +
-        (form.message.length > 40 ? "..." : "")
-      : "..."
-  }"
-}`}
-          </pre>
-
-          <div className="contact-direct">
-
+          <div className="hire-buttons">
             <a
-              href={`mailto:${contactInfo.email}`}
-              className="contact-direct-item"
+              href={socialLinks.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hire-btn hire-btn-linkedin"
             >
-              <Mail size={16} />
-              {contactInfo.email}
-            </a>
-
-            <a
-              href={`tel:${contactInfo.phone}`}
-              className="contact-direct-item"
-            >
-              <Phone size={16} />
-              {contactInfo.phone}
+              <FaLinkedin size={18} />
+              LinkedIn
             </a>
 
             <a
               href={socialLinks.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="contact-direct-item"
+              className="hire-btn hire-btn-github"
             >
+              <FaGithub size={18} />
               GitHub
             </a>
-
-            <a
-              href={socialLinks.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="contact-direct-item"
-            >
-              LinkedIn
-            </a>
-
           </div>
         </motion.div>
 
-        {/* Contact form */}
+        {/* Contact Form Card */}
         <motion.form
-          className="contact-form card"
+          className="contact-form-card"
           onSubmit={handleSubmit}
-          initial={{ opacity: 0, x: 20 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
+          <div className="contact-field">
+            <label htmlFor="name">Name</label>
 
-          <div className="contact-form-row">
-
-            <div className="contact-field">
-              <label htmlFor="firstName">
-                First Name
-              </label>
-
-              <input
-                id="firstName"
-                name="firstName"
-                type="text"
-                value={form.firstName}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-            <div className="contact-field">
-              <label htmlFor="lastName">
-                Last Name
-              </label>
-
-              <input
-                id="lastName"
-                name="lastName"
-                type="text"
-                value={form.lastName}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
+            <input
+              id="name"
+              name="name"
+              type="text"
+              value={form.name}
+              onChange={handleChange}
+              required
+            />
           </div>
 
           <div className="contact-field">
-            <label htmlFor="email">
-              Email Address
-            </label>
+            <label htmlFor="email">Email</label>
 
             <input
               id="email"
@@ -203,36 +147,21 @@ function Contact() {
           </div>
 
           <div className="contact-field">
-            <label htmlFor="message">
-              Message
-            </label>
+            <label htmlFor="message">Message</label>
 
             <textarea
               id="message"
               name="message"
               rows="4"
-              placeholder="Type your message here..."
               value={form.message}
               onChange={handleChange}
               required
             />
           </div>
 
-          <label className="contact-checkbox">
-            <input
-              type="checkbox"
-              name="consent"
-              checked={form.consent}
-              onChange={handleChange}
-              required
-            />
-
-            I give permission to contact me at this email address.
-          </label>
-
           <button
             type="submit"
-            className="btn btn-primary contact-submit"
+            className="contact-submit"
             disabled={status === "sending"}
           >
             {status === "sending" ? (
@@ -261,7 +190,6 @@ function Contact() {
               {errorMsg}
             </p>
           )}
-
         </motion.form>
       </div>
     </section>

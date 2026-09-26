@@ -14,6 +14,19 @@ function App() {
       <a href="#main-content" className="skip-link">
         Skip to main content
       </a>
+
+      {/* Fixed cosmic background — stars + soft color glows.
+          Sits behind EVERY section, not just the Hero, so the whole
+          site shares one consistent background instead of just the top. */}
+            {/* Fixed cosmic background — twinkling stars + three slowly drifting
+          color glows + a soft vignette. Sits behind every section. */}
+      <div className="site-background" aria-hidden="true">
+        <span className="site-glow site-glow-1" />
+        <span className="site-glow site-glow-2" />
+        <span className="site-glow site-glow-3" />
+        <span className="site-vignette" />
+      </div>
+
       <Navbar />
       <main id="main-content">
         <Hero />

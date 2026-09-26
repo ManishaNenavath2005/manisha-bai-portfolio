@@ -1,88 +1,123 @@
+.contact-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4); /* tighter gap between the two cards */
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   HIRE ME CARD
+   ========================================================================== */
+.hire-card {
+  text-align: center;
+  padding: var(--space-6); /* slightly less padding than before */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(34, 211, 238, 0.4);
+  background: linear-gradient(135deg, rgba(20, 60, 60, 0.35), rgba(8, 8, 12, 0.9));
+  /* Ambient glow that's always visible, not just on hover — matches the reference */
+  box-shadow: 0 0 40px rgba(34, 211, 238, 0.12);
+  transition: border-color var(--transition-base), box-shadow var(--transition-base),
+    transform var(--transition-base);
+}
+
+.hire-card:hover {
+  border-color: rgba(34, 211, 238, 0.8);
+  box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.3), 0 0 50px rgba(34, 211, 238, 0.3);
+  transform: translateY(-4px);
+}
+
 .contact-header {
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: var(--space-10);
+  margin-bottom: var(--space-8); /* was space-10 — tighter gap before the cards */
 }
 
-.contact-subtitle {
-  text-align: center;
+/* Same neon glow treatment as "Hire Me" */
+.contact-neon-title {
+  font-size: 34px;
+  font-weight: 700;
+  color: var(--color-accent-cyan, #22d3ee);
+  text-shadow: 0 0 8px rgba(34, 211, 238, 0.8), 0 0 24px rgba(34, 211, 238, 0.5),
+    0 0 48px rgba(34, 211, 238, 0.3);
+}
+.hire-title {
+  font-size: 27px;
+  font-weight: 700;
+  color: var(--color-accent-cyan, #22d3ee);
+  text-shadow: 0 0 8px rgba(34, 211, 238, 0.8), 0 0 24px rgba(34, 211, 238, 0.5),
+    0 0 48px rgba(34, 211, 238, 0.3);
 }
 
-.contact-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-6);
+.hire-text {
+  color: var(--color-text-secondary);
+  font-size: 13px;
+  line-height: 1.7;
+  max-width: 520px;
 }
 
-/* Left panel — live JSON preview */
-.contact-preview {
-  padding: 0;
-  overflow: hidden;
+.hire-buttons {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-4);
+  margin-top: var(--space-2);
 }
 
-.contact-preview-header {
-  display: flex;
+.hire-btn {
+  display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  padding: var(--space-3) var(--space-4);
-  background-color: var(--color-bg-alt);
-  border-bottom: 1px solid var(--color-border);
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+  font-size: 12px;
+  color: #ffffff;
+  background-size: 200% 100%;
+  transition: transform var(--transition-fast), background-position var(--transition-slow);
 }
 
-.contact-preview-title {
-  margin-left: var(--space-2);
-  font-family: var(--font-mono);
-  font-size: var(--fs-xs);
-  color: var(--color-text-muted);
+.hire-btn:hover {
+  transform: translateY(-2px);
+  background-position: 100% 0;
 }
 
-.contact-preview-body {
-  padding: var(--space-5);
-  font-family: var(--font-mono);
-  font-size: var(--fs-sm);
-  color: var(--color-accent);
-  white-space: pre-wrap;
-  word-break: break-word;
-  flex: 1;
+.hire-btn-linkedin {
+  background-image: linear-gradient(90deg, var(--color-accent-cyan, #22d3ee), #8b5bef, var(--color-accent-pink, #ef5ba0));
 }
 
-.contact-direct {
+.hire-btn-github {
+  background-image: linear-gradient(90deg, var(--color-success), var(--color-accent-cyan, #22d3ee), #8b5bef);
+}
+
+/* ==========================================================================
+   FORM CARD
+   ========================================================================== */
+.contact-form-card {
+  padding: var(--space-5); /* slightly less padding than before */
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
-  padding: var(--space-5);
-  border-top: 1px solid var(--color-border);
+  gap: var(--space-4); /* slightly tighter field spacing */
+
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(34, 211, 238, 0.4);
+  background: linear-gradient(135deg, rgba(20, 30, 60, 0.35), rgba(8, 8, 14, 0.92));
+  box-shadow: 0 0 40px rgba(34, 211, 238, 0.12);
+  transition: border-color var(--transition-base), box-shadow var(--transition-base),
+    transform var(--transition-base);
 }
 
-.contact-direct-item {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  font-size: var(--fs-sm);
-  color: var(--color-text-secondary);
-  transition: color var(--transition-fast);
-}
-
-.contact-direct-item:hover {
-  color: var(--color-accent);
-}
-
-/* Right panel — form */
-.contact-form {
-  padding: var(--space-6);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-}
-
-.contact-form-row {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-4);
+.contact-form-card:hover {
+  border-color: rgba(34, 211, 238, 0.8);
+  box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.3), 0 0 50px rgba(34, 211, 238, 0.3);
+  transform: translateY(-4px);
 }
 
 .contact-field {
@@ -92,52 +127,75 @@
 }
 
 .contact-field label {
-  font-size: var(--fs-xs);
-  font-family: var(--font-mono);
-  color: var(--color-text-muted);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-accent-cyan, #22d3ee);
+  text-shadow: 0 0 8px rgba(34, 211, 238, 0.35);
 }
 
 .contact-field input,
 .contact-field textarea {
-  background-color: var(--color-bg-alt);
-  border: 1px solid var(--color-border);
+  background-color: rgba(8, 8, 14, 0.7);
+  border: 1px solid rgba(34, 211, 238, 0.3);
   border-radius: var(--radius-sm);
   padding: var(--space-3) var(--space-4);
-  color: var(--color-text-primary);
+  color: var(--color-accent-cyan, #22d3ee);
   font-family: var(--font-sans);
   font-size: var(--fs-sm);
-  transition: border-color var(--transition-fast);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
   resize: vertical;
+}
+
+.contact-field input::placeholder,
+.contact-field textarea::placeholder {
+  color: rgba(34, 211, 238, 0.4);
 }
 
 .contact-field input:focus,
 .contact-field textarea:focus {
   outline: none;
-  border-color: var(--color-accent);
-}
-
-.contact-checkbox {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--space-3);
-  font-size: var(--fs-xs);
-  color: var(--color-text-secondary);
-  line-height: 1.5;
-}
-
-.contact-checkbox input {
-  margin-top: 2px;
-  accent-color: var(--color-accent);
+  border-color: var(--color-accent-cyan, #22d3ee);
+  box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.15);
 }
 
 .contact-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
   width: 100%;
-  margin-top: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+  font-size: var(--fs-sm);
+  color: #0a0a0f;
+  background-image: linear-gradient(
+    90deg,
+    var(--color-accent-cyan, #22d3ee),
+    #8b5bef,
+    var(--color-accent-pink, #ef5ba0),
+    var(--color-success),
+    var(--color-accent-cyan, #22d3ee)
+  );
+  background-size: 300% 100%;
+  animation: submit-gradient-sweep 6s ease-in-out infinite;
+  transition: transform var(--transition-fast);
+}
+
+.contact-submit:hover {
+  transform: translateY(-2px);
 }
 
 .contact-submit:disabled {
   opacity: 0.7;
   cursor: not-allowed;
+  transform: none;
+}
+
+@keyframes submit-gradient-sweep {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .contact-status {
@@ -153,13 +211,8 @@
   color: #f16060;
 }
 
-@media (min-width: 900px) {
-  .contact-grid {
-    grid-template-columns: 1fr 1fr;
-    align-items: stretch;
-  }
-
-  .contact-form-row {
-    grid-template-columns: 1fr 1fr;
+@media (prefers-reduced-motion: reduce) {
+  .contact-submit {
+    animation: none;
   }
 }

@@ -1,9 +1,39 @@
-.training-card {
-  padding: var(--space-8);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-5);
+.training {
+  padding-top: var(--space-16);
 }
+
+.training-card {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: var(--space-6);
+
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(34, 211, 238, 0.35);
+
+  background: linear-gradient(
+    135deg,
+    rgba(20, 60, 60, 0.35),
+    rgba(8, 8, 12, 0.9)
+  );
+
+  transition:
+    border-color var(--transition-base),
+    box-shadow var(--transition-base),
+    transform var(--transition-base);
+}
+
+.training-card:hover {
+  border-color: rgba(34, 211, 238, 0.8);
+
+  box-shadow:
+    0 0 0 1px rgba(34, 211, 238, 0.3),
+    0 0 30px rgba(34, 211, 238, 0.25);
+
+  transform: translateY(-4px);
+}
+
+/* Top section */
 
 .training-top {
   display: flex;
@@ -13,64 +43,126 @@
 
 .training-icon {
   flex-shrink: 0;
-  width: 48px;
-  height: 48px;
+
+  width: 40px;
+  height: 40px;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--radius-sm);
-  background-color: var(--color-accent-soft);
-  color: var(--color-accent);
+
+  border-radius: 50%;
+
+  background-color: rgba(34, 211, 238, 0.08);
+  border: 1px solid rgba(34, 211, 238, 0.4);
+
+  color: var(--color-accent-cyan, #22d3ee);
+
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.2);
+}
+
+.training-heading {
+  flex: 1;
 }
 
 .training-title {
-  font-size: var(--fs-xl);
   margin-top: var(--space-1);
+
+  font-size: 20px;
+  font-weight: 700;
+
+  color: var(--color-text-primary);
 }
 
 .training-org {
-  color: var(--color-text-secondary);
-  font-size: var(--fs-sm);
-  margin-top: var(--space-1);
+  margin-top: var(--space-2);
+
+  font-size: 12px;
+  font-weight: 600;
+
+  color: var(--color-accent-pink, #ef5ba0);
 }
+
+/* Description */
 
 .training-note {
+  margin-top: var(--space-5);
+
+  max-width: 780px;
+
   color: var(--color-text-secondary);
-  font-size: var(--fs-sm);
-  line-height: 1.7;
-  border-left: 2px solid var(--color-border-strong);
-  padding-left: var(--space-4);
+
+  font-size: 13px;
+  line-height: 1.8;
 }
 
-.training-stat {
-  display: flex;
-  align-items: baseline;
-  gap: var(--space-3);
-}
-
-.training-stat-number {
-  font-size: var(--fs-3xl);
-  color: var(--color-accent);
-  font-weight: 700;
-}
-
-.training-stat-label {
-  color: var(--color-text-muted);
-  font-size: var(--fs-sm);
-}
+/* Technologies */
 
 .training-tech {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-2);
+
+  margin-top: var(--space-5);
 }
 
 .training-tech-badge {
-  font-size: var(--fs-xs);
-  font-family: var(--font-mono);
-  padding: var(--space-1) var(--space-3);
-  background-color: var(--color-bg-alt);
-  border: 1px solid var(--color-border);
+  padding: var(--space-2) var(--space-3);
+
   border-radius: var(--radius-sm);
+
+  background-color: rgba(8, 8, 12, 0.6);
+
+  border: 1px solid var(--color-border);
+
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.03em;
+
   color: var(--color-text-secondary);
+
+  transition:
+    border-color var(--transition-fast),
+    color var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.training-tech-badge:hover {
+  border-color: var(--color-accent-cyan);
+  color: var(--color-text-primary);
+  background-color: rgba(34, 211, 238, 0.06);
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+  .training-card {
+    padding: var(--space-5);
+  }
+
+  .training-top {
+    gap: var(--space-3);
+  }
+
+  .training-icon {
+    width: 42px;
+    height: 42px;
+  }
+
+  .training-title {
+    font-size: 16px;
+  }
+
+  .training-org {
+    font-size: 12px;
+  }
+
+  .training-note {
+    font-size: 12px;
+    line-height: 1.7;
+  }
+
+  .training-tech-badge {
+    font-size: 10px;
+  }
 }

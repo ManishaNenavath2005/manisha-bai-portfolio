@@ -6,69 +6,158 @@
   align-items: center;
 }
 
+.education-neon-title {
+  font-size: 35px;
+  font-weight: 700;
+  color: var(--color-accent-cyan, #22d3ee);
+  text-shadow: 0 0 8px rgba(34, 211, 238, 0.8), 0 0 24px rgba(34, 211, 238, 0.5),
+    0 0 48px rgba(34, 211, 238, 0.3);
+}
+
+/* One full-width row per education entry */
 .education-list {
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
+  gap: var(--space-5);
+
+  /* Keep cards smaller and centered */
+  width: 100%;
+  max-width: 850px;
+  margin: 0 auto;
 }
 
 .education-card {
   display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
+  align-items: flex-start;
+  gap: var(--space-5);
   padding: var(--space-6);
+
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(34, 211, 238, 0.35);
+  background: linear-gradient(135deg, rgba(20, 60, 60, 0.35), rgba(8, 8, 12, 0.9));
+  transition: border-color var(--transition-base), box-shadow var(--transition-base),
+    transform var(--transition-base);
+}
+
+.education-card:hover {
+  border-color: rgba(34, 211, 238, 0.8);
+  box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.3), 0 0 30px rgba(34, 211, 238, 0.25);
+  transform: translateY(-4px);
 }
 
 .education-icon {
-  width: 44px;
-  height: 44px;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--radius-sm);
-  background-color: var(--color-accent-soft);
-  color: var(--color-accent);
+  border-radius: 50%;
+  background-color: rgba(34, 211, 238, 0.08);
+  border: 1px solid rgba(34, 211, 238, 0.4);
+  color: var(--color-accent-cyan, #22d3ee);
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.2);
 }
 
-.education-details h3 {
-  font-size: var(--fs-lg);
+.education-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.education-top-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.education-degree {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-text-primary);
 }
 
 .education-field {
-  color: var(--color-accent);
-  font-size: var(--fs-sm);
+  color: var(--color-accent-pink, #ef5ba0);
+  font-size: 12px;
+  font-weight: 600;
   margin-top: var(--space-1);
+}
+
+.education-years {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  padding-top: var(--space-1);
 }
 
 .education-institution {
   color: var(--color-text-secondary);
-  font-size: var(--fs-sm);
+  font-size: 10px;
+  margin-top: var(--space-2);
+}
+
+.education-location {
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   margin-top: var(--space-1);
 }
 
-.education-meta {
+.education-footer-row {
   display: flex;
-  flex-direction: column;
-  gap: var(--space-1);
-  font-family: var(--font-mono);
-  font-size: var(--fs-xs);
-  color: var(--color-text-muted);
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
 }
 
-@media (min-width: 700px) {
+.education-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.education-tag {
+  padding: var(--space-1) var(--space-3);
+  background-color: rgba(8, 8, 12, 0.6);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+.education-score {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--color-success);
+  white-space: nowrap;
+}
+
+@media (max-width: 700px) {
   .education-card {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: var(--space-4);
   }
 
-  .education-details {
-    flex: 1;
-    padding: 0 var(--space-6);
+  .education-top-row {
+    flex-direction: column;
+    gap: var(--space-1);
   }
 
-  .education-meta {
-    align-items: flex-end;
-    text-align: right;
+  .education-footer-row {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
