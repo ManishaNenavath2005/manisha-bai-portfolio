@@ -50,7 +50,7 @@
 
 .footer-line-2 {
   font-family: var(--font-mono);
-  font-size: var(--fs-xs);
+  font-size: 13px;
   color: var(--color-text-muted);
   letter-spacing: 0.02em;
 }

@@ -78,7 +78,7 @@
   padding: var(--space-3) var(--space-6);
   border-radius: var(--radius-pill);
   font-weight: 700;
-  font-size: 12px;
+  font-size: 13px;
   color: #ffffff;
   background-size: 200% 100%;
   transition: transform var(--transition-fast), background-position var(--transition-slow);
@@ -127,7 +127,7 @@
 }
 
 .contact-field label {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   color: var(--color-accent-cyan, #22d3ee);
   text-shadow: 0 0 8px rgba(34, 211, 238, 0.35);
